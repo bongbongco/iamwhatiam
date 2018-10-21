@@ -1,3 +1,4 @@
 import Head from "next/head";
+import { DatePicker } from "antd";
 
-export default () => <div>index</div>;
+export default () => <div><DatePicker /></div>;

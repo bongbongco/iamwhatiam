@@ -158,7 +158,7 @@ function (_Document) {
         name: "author",
         content: "Seungyong Lee"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("link", {
-        href: "/static/styles.css",
+        href: "//cdnjs.cloudflare.com/ajax/libs/antd/3.10.1/antd.min.css",
         rel: "stylesheet"
       })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("body", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_2__["Main"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_document__WEBPACK_IMPORTED_MODULE_2__["NextScript"], null)));
     }
