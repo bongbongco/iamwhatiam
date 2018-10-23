@@ -5,6 +5,7 @@ export default class MyDocument extends Document{
         const initalProps = await Document.getInitialProps(ctx);
         return {...initalProps};
     }
+
     render(){
         return (
             <html>
@@ -12,6 +13,7 @@ export default class MyDocument extends Document{
                     <meta name="author" content={"Seungyong Lee"} />
                     <link href="//cdnjs.cloudflare.com/ajax/libs/antd/3.10.1/antd.min.css" rel="stylesheet" />
                 </Head>
+                <style>{`body {background-color: #EFF2F5!important}`}</style>
                 <body>
                     <Main />
                     <NextScript />
