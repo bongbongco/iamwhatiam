@@ -9,6 +9,7 @@
   "dependencies": {
     "antd": "^3.10.1",
     "apollo-boost": "^0.1.16",
+    "cors": "^2.8.4",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
     "next": "^7.0.2",

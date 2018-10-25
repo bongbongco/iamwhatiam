@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -210,20 +210,19 @@ var Meta = antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta;
       subtitle = _ref.subtitle,
       price = _ref.price,
       photoUrl = _ref.photoUrl;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Col"], {
-    span: 4,
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       marginBottom: "25px"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/product?id=".concat(id),
+    as: "/product/".concat(id)
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
     hoverable: true,
-    actions: [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/product?id=".concat(id),
-      as: "/product/".concat(id)
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+    actions: [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
       type: "eye",
       theme: "outlined"
-    })))],
+    })],
     cover: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       alt: "example",
       src: photoUrl
@@ -231,7 +230,7 @@ var Meta = antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta;
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Meta, {
     title: name,
     description: subtitle
-  })));
+  })))));
 });
 
 /***/ }),
@@ -343,12 +342,18 @@ var Content = antd__WEBPACK_IMPORTED_MODULE_3__["Layout"].Content;
       hrefAs: "category/".concat(category.name.toLowerCase()),
       text: category.name
     });
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Row"], {
-    gutter: 25,
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
-      paddingTop: "50px"
+      marginTop: "50px"
     }
-  }, data && data.onSale && data.onSale.length !== 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "On Sale"), data && data.onSale && data.onSale.map(function (product) {
+  }, data && data.onSale && data.onSale.length !== 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "On Sale"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: "grid",
+      gridGap: "10px",
+      gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+      width: "100%"
+    }
+  }, data && data.onSale && data.onSale.map(function (product) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ProductCard__WEBPACK_IMPORTED_MODULE_6__["default"], {
       key: product.id,
       id: product.id,
@@ -357,12 +362,18 @@ var Content = antd__WEBPACK_IMPORTED_MODULE_3__["Layout"].Content;
       price: product.price,
       photoUrl: product.photo.url
     });
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Row"], {
-    gutter: 25,
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
-      paddingTop: "50px"
+      marginTop: "50px"
     }
-  }, data && data.allProducts && data.allProducts.length !== 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "all Products"), data && data.allProducts && data.allProducts.map(function (product) {
+  }, data && data.allProducts && data.allProducts.length !== 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "all Products"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: "grid",
+      gridGap: "10px",
+      gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+      width: "100%"
+    }
+  }, data && data.allProducts && data.allProducts.map(function (product) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ProductCard__WEBPACK_IMPORTED_MODULE_6__["default"], {
       key: product.id,
       id: product.id,
@@ -371,7 +382,7 @@ var Content = antd__WEBPACK_IMPORTED_MODULE_3__["Layout"].Content;
       price: product.price,
       photoUrl: product.photo.url
     });
-  }))));
+  })))));
 });
 
 /***/ }),
@@ -405,7 +416,7 @@ var INDEX_QUERY = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_temp
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!************************************!*\
   !*** multi ./pages/index/index.js ***!
   \************************************/

@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -210,20 +210,19 @@ var Meta = antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta;
       subtitle = _ref.subtitle,
       price = _ref.price,
       photoUrl = _ref.photoUrl;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Col"], {
-    span: 4,
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       marginBottom: "25px"
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/product?id=".concat(id),
+    as: "/product/".concat(id)
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
     hoverable: true,
-    actions: [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/product?id=".concat(id),
-      as: "/product/".concat(id)
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
+    actions: [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_2__["Icon"], {
       type: "eye",
       theme: "outlined"
-    })))],
+    })],
     cover: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       alt: "example",
       src: photoUrl
@@ -231,7 +230,7 @@ var Meta = antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta;
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Meta, {
     title: name,
     description: subtitle
-  })));
+  })))));
 });
 
 /***/ }),
@@ -263,7 +262,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _searchPresenter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./searchPresenter */ "./pages/search/searchPresenter.js");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _searchPresenter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./searchPresenter */ "./pages/search/searchPresenter.js");
+/* harmony import */ var _searchQueries__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./searchQueries */ "./pages/search/searchQueries.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -285,6 +287,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -312,7 +316,11 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_updateSearchTerm", function (event) {
-      clearTimeout(_this.setTimeout);
+      _this.setState({
+        canSearch: false
+      });
+
+      clearTimeout(_this.searchTimeout);
       var value = event.target.value;
 
       _this.setState({
@@ -320,7 +328,9 @@ function (_React$Component) {
       });
 
       _this.searchTimeout = setTimeout(function () {
-        return console.log("Searching...");
+        return _this.setState({
+          canSearch: true
+        });
       }, 500);
     });
 
@@ -330,12 +340,24 @@ function (_React$Component) {
   _createClass(_default, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$state = this.state,
           searchTerm = _this$state.searchTerm,
           canSearch = _this$state.canSearch;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_searchPresenter__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        searchTerm: searchTerm,
-        updateSearchTerm: this._updateSearchTerm
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
+        skip: !canSearch,
+        query: _searchQueries__WEBPACK_IMPORTED_MODULE_3__["SEARCH_QUERY"],
+        variables: {
+          searchTerm: searchTerm
+        }
+      }, function (_ref) {
+        var data = _ref.data;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_searchPresenter__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          searchTerm: searchTerm,
+          updateSearchTerm: _this2._updateSearchTerm,
+          data: data
+        });
       });
     }
   }]);
@@ -397,12 +419,58 @@ var Content = antd__WEBPACK_IMPORTED_MODULE_3__["Layout"].Content;
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Input"], {
     onChange: updateSearchTerm,
     placeholder: "Search by name"
-  })));
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: "grid",
+      gridGap: "10px",
+      gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+      width: "100%",
+      margin: "50px 0px"
+    }
+  }, data && data.products && data.products.map(function (product) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ProductCard__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      key: product.id,
+      id: product.id,
+      name: product.name,
+      subtitle: product.detail,
+      price: product.price,
+      photoUrl: product.photo.url
+    });
+  }), data && data.products && !data.products.product && "No Product")));
 });
 
 /***/ }),
 
-/***/ 5:
+/***/ "./pages/search/searchQueries.js":
+/*!***************************************!*\
+  !*** ./pages/search/searchQueries.js ***!
+  \***************************************/
+/*! exports provided: SEARCH_QUERY */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SEARCH_QUERY", function() { return SEARCH_QUERY; });
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    query searchQuery($searchTerm: String!) {\n        products(\n            where: {\n                OR: [\n                    { name_contains: $searchTerm }\n                    { description_contains: $searchTerm }\n                ]\n            }\n        ) {\n            id\n            name\n            detail\n            price\n            photo {\n                url\n            }\n        }\n    }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var SEARCH_QUERY = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject());
+
+/***/ }),
+
+/***/ 3:
 /*!*************************************!*\
   !*** multi ./pages/search/index.js ***!
   \*************************************/
@@ -422,6 +490,17 @@ module.exports = __webpack_require__(/*! ./pages/search/index.js */"./pages/sear
 /***/ (function(module, exports) {
 
 module.exports = require("antd");
+
+/***/ }),
+
+/***/ "apollo-boost":
+/*!*******************************!*\
+  !*** external "apollo-boost" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("apollo-boost");
 
 /***/ }),
 
@@ -455,6 +534,17 @@ module.exports = require("next/link");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-apollo":
+/*!*******************************!*\
+  !*** external "react-apollo" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-apollo");
 
 /***/ })
 
