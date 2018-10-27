@@ -235,6 +235,35 @@ var Meta = antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta;
 
 /***/ }),
 
+/***/ "./fragments.js":
+/*!**********************!*\
+  !*** ./fragments.js ***!
+  \**********************/
+/*! exports provided: PRODUCT_FRAGMENT */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PRODUCT_FRAGMENT", function() { return PRODUCT_FRAGMENT; });
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n fragment ProductItems on Product{\n    id\n    name\n    detail\n    price\n    photo {\n        url\n    }\n }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var PRODUCT_FRAGMENT = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject());
+
+/***/ }),
+
 /***/ "./pages/index/index.js":
 /*!******************************!*\
   !*** ./pages/index/index.js ***!
@@ -399,8 +428,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INDEX_QUERY", function() { return INDEX_QUERY; });
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fragments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../fragments */ "./fragments.js");
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    {\n        categories {\n            id\n            name\n        }\n        onSale: products(where: {onSale: true}) {\n            id\n            name\n            detail\n            price\n            photo {\n                url\n            }\n        }\n        allProducts: products(where: {onSale: false}) {\n            id\n            name\n            detail\n            price\n            photo {\n                url\n            }\n        }\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    {\n        categories {\n            id\n            name\n        }\n        onSale: products(where: {onSale: true}) {\n            ...ProductItems\n        }\n        allProducts: products(where: {onSale: false}) {\n            ...ProductItems\n        }\n    }\n    ", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -412,7 +442,8 @@ function _templateObject() {
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
-var INDEX_QUERY = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject());
+
+var INDEX_QUERY = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject(), _fragments__WEBPACK_IMPORTED_MODULE_1__["PRODUCT_FRAGMENT"]);
 
 /***/ }),
 

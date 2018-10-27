@@ -1,0 +1,1 @@
+{"version":3,"file":"static/webpack/static/development/pages/product.js.fefb7b8ac89c2f495fcb.hot-update.js","sources":["webpack:///./pages/product/productPresenter.js"],"sourcesContent":["export default ({ data }) => <h1>{data.name}</h1>;"],"mappings":";;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;;;;;;;;;;;;;;;;;;;;;;;A","sourceRoot":""}
