@@ -9,11 +9,11 @@
   "dependencies": {
     "antd": "^3.10.1",
     "apollo-boost": "^0.1.16",
-    "cors": "^2.8.4",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
     "next": "^7.0.2",
-    "next-with-apollo": "^3.2.1",
+    "next-nprogress": "1.1.0",
+    "next-with-apollo": "3.2.0",
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2"

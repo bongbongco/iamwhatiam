@@ -186,9 +186,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _lib_withApollo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../lib/withApollo */ "./lib/withApollo.js");
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-apollo */ "react-apollo");
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom */ "react-dom");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _lib_withApollo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lib/withApollo */ "./lib/withApollo.js");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var next_nprogress_styles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next-nprogress/styles */ "next-nprogress/styles");
+/* harmony import */ var next_nprogress_styles__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_nprogress_styles__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_nprogress__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next-nprogress */ "next-nprogress");
+/* harmony import */ var next_nprogress__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_nprogress__WEBPACK_IMPORTED_MODULE_8__);
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -218,7 +224,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
 var Footer = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Footer;
+var msDelay = 300;
 
 var MyApp =
 /*#__PURE__*/
@@ -238,9 +248,12 @@ function (_App) {
           Component = _this$props.Component,
           pageProps = _this$props.pageProps,
           apollo = _this$props.apollo;
-      return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_5__["ApolloProvider"], {
+      return react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_2__["Container"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(next_nprogress_styles__WEBPACK_IMPORTED_MODULE_7___default.a, {
+        color: "black",
+        spinner: true
+      }), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_6__["ApolloProvider"], {
         client: apollo
-      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(next_app__WEBPACK_IMPORTED_MODULE_2__["Container"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Component, pageProps), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Footer, null, "This is important"))));
+      }, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Component, pageProps), react__WEBPACK_IMPORTED_MODULE_3___default.a.createElement(Footer, null, "This is important"))));
     }
   }], [{
     key: "getInitalProps",
@@ -289,7 +302,7 @@ function (_App) {
   return MyApp;
 }(next_app__WEBPACK_IMPORTED_MODULE_2___default.a);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_lib_withApollo__WEBPACK_IMPORTED_MODULE_4__["default"])(MyApp));
+/* harmony default export */ __webpack_exports__["default"] = (next_nprogress__WEBPACK_IMPORTED_MODULE_8___default()()(Object(_lib_withApollo__WEBPACK_IMPORTED_MODULE_5__["default"])(MyApp))); //export default withApollo(MyApp);
 
 /***/ }),
 
@@ -455,6 +468,28 @@ module.exports = require("apollo-boost");
 
 /***/ }),
 
+/***/ "next-nprogress":
+/*!*********************************!*\
+  !*** external "next-nprogress" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next-nprogress");
+
+/***/ }),
+
+/***/ "next-nprogress/styles":
+/*!****************************************!*\
+  !*** external "next-nprogress/styles" ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next-nprogress/styles");
+
+/***/ }),
+
 /***/ "next-with-apollo":
 /*!***********************************!*\
   !*** external "next-with-apollo" ***!
@@ -496,6 +531,17 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-apollo");
+
+/***/ }),
+
+/***/ "react-dom":
+/*!****************************!*\
+  !*** external "react-dom" ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-dom");
 
 /***/ })
 
