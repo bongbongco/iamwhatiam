@@ -122,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n fragment ProductItems on Product{\n    id\n    name\n    detail\n    price\n    photo {\n        url\n    }\n }\n"]);
+  var data = _taggedTemplateLiteral(["\n fragment ProductItems on Product{\n    id\n    name\n    detail\n    price\n    onCart @client\n    photo {\n        url\n    }\n }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -307,6 +307,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _fragments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fragments */ "./fragments.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -364,6 +368,7 @@ var resolvers = {
           cart = _cache$readQuery.cart;
 
       var newCart;
+      var onCart;
       var foundProduct = cart.find(function (aProduct) {
         return aProduct.id === product.id;
       });
@@ -373,8 +378,10 @@ var resolvers = {
           return aProduct.id !== product.id;
         });
         newCart = cleanCart;
+        onCart = false;
       } else {
         newCart = _toConsumableArray(cart).concat([product]);
+        onCart = true;
       }
 
       cache.writeData({
@@ -382,7 +389,21 @@ var resolvers = {
           cart: newCart
         }
       });
+      cache.writeFragment({
+        id: "Product:".concat(product.id),
+        fragment: _fragments__WEBPACK_IMPORTED_MODULE_1__["PRODUCT_FRAGMENT"],
+        data: _objectSpread({
+          __typename: "Product"
+        }, product, {
+          onCart: onCart
+        })
+      });
       return null;
+    }
+  },
+  Product: {
+    onCart: function onCart() {
+      return false;
     }
   }
 };

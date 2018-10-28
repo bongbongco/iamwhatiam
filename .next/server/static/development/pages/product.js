@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -246,7 +246,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n fragment ProductItems on Product{\n    id\n    name\n    detail\n    price\n    photo {\n        url\n    }\n }\n"]);
+  var data = _taggedTemplateLiteral(["\n fragment ProductItems on Product{\n    id\n    name\n    detail\n    price\n    onCart @client\n    photo {\n        url\n    }\n }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -451,9 +451,9 @@ __webpack_require__.r(__webpack_exports__);
   }, data.product.description), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
     type: "primary",
     onClick: toggleCart
-  }, "Add to cart($", data.product.price, ")")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
+  }, data.product.onCart ? "Remove from cart" : "Add to cart($".concat(data.product.price, ")"))), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
     styleId: "2282839544",
-    css: ".product.jsx-2282839544{display:grid;margin:50px 0px;padding:0px 50px;grid-template-columnms:repeat(2,1fr);grid-gap:50px;}.product.jsx-2282839544 img.jsx-2282839544{max-width:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zZXVuZ3lvbmdsZWUvRG9jdW1lbnRzL0dpdEh1Yi9pYW13aGF0aWFtL3BhZ2VzL3Byb2R1Y3QvcHJvZHVjdFByZXNlbnRlci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFpQ3dCLEFBR2tDLEFBUWxCLGFBUHFCLEVBT3BCLGNBTnFCLGlCQUNxQixxQ0FDeEIsY0FDbEIiLCJmaWxlIjoiL1VzZXJzL3NldW5neW9uZ2xlZS9Eb2N1bWVudHMvR2l0SHViL2lhbXdoYXRpYW0vcGFnZXMvcHJvZHVjdC9wcm9kdWN0UHJlc2VudGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEhlYWQgZnJvbSBcIm5leHQvaGVhZFwiO1xuaW1wb3J0IHsgQnV0dG9uIGFzIEFudEJ1dHRvbiB9IGZyb20gXCJhbnRkXCI7XG5pbXBvcnQgSGVhZGVyIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL0hlYWRlclwiO1xuaW1wb3J0IEJ1dHRvbiBmcm9tIFwiLi4vLi4vY29tcG9uZW50cy9CdXR0b25cIjtcbmltcG9ydCBDYXJ0QnV0dG9uIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL0NhcnRCdXR0b25cIjtcblxuZXhwb3J0IGRlZmF1bHQgKHsgZGF0YSwgdG9nZ2xlQ2FydCB9KSA9PiAoXG4gICAgPD5cbiAgICAgICAgPEhlYWQ+XG4gICAgICAgICAgICA8dGl0bGU+e2RhdGEucHJvZHVjdC5uYW1lfSB8IE5vbWFkIFN0b3JlPC90aXRsZT5cbiAgICAgICAgPC9IZWFkPlxuICAgICAgICA8SGVhZGVyIFxuICAgICAgICAgICAgY2VudGVyQ29sdW1uPXtcbiAgICAgICAgICAgICAgICA8aDQ+UHJvZHVjdDwvaDQ+XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICByaWdodENvbHVtbj17XG4gICAgICAgICAgICAgICAgPENhcnRCdXR0b24gLz5cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGxlZnRDb2x1bW49e1xuICAgICAgICAgICAgICAgIDxCdXR0b24gaHJlZj1cIi9cIiB0ZXh0PVwiSG9tZVwiIC8+XG4gICAgICAgICAgICB9XG4gICAgICAgIC8+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPXtcInByb2R1Y3RcIn0+XG4gICAgICAgICAgICA8aW1nIHNyYz17ZGF0YS5wcm9kdWN0LnBob3RvLnVybH0gLz5cbiAgICAgICAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgICAgICAgICA8aDI+e2RhdGEucHJvZHVjdC5uYW1lfTwvaDI+XG4gICAgICAgICAgICAgICAgICAgIDxoMz57ZGF0YS5wcm9kdWN0LmRldGFpbH08L2gzPlxuICAgICAgICAgICAgICAgICAgICA8aDQ+e2RhdGEucHJvZHVjdC5kZXNjcmlwdGlvbn08L2g0PlxuICAgICAgICAgICAgICAgICAgICA8QW50QnV0dG9uIHR5cGU9XCJwcmltYXJ5XCIgb25DbGljaz17dG9nZ2xlQ2FydH0+XG4gICAgICAgICAgICAgICAgICAgICAgICBBZGQgdG8gY2FydCgkXG4gICAgICAgICAgICAgICAgICAgICAgICB7ZGF0YS5wcm9kdWN0LnByaWNlfSlcbiAgICAgICAgICAgICAgICAgICAgPC9BbnRCdXR0b24+XG4gICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8c3R5bGUganN4PntgXG4gICAgICAgICAgICAgICAgLnByb2R1Y3Qge1xuICAgICAgICAgICAgICAgICAgICBkaXNwbGF5OiBncmlkO1xuICAgICAgICAgICAgICAgICAgICBtYXJnaW46IDUwcHggMHB4O1xuICAgICAgICAgICAgICAgICAgICBwYWRkaW5nOiAwcHggNTBweDtcbiAgICAgICAgICAgICAgICAgICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5tczogcmVwZWF0KDIsIDFmcik7XG4gICAgICAgICAgICAgICAgICAgIGdyaWQtZ2FwOiA1MHB4O1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAucHJvZHVjdCBpbWcge1xuICAgICAgICAgICAgICAgICAgICBtYXgtd2lkdGg6IDEwMCVcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICBgfVxuICAgICAgICAgICAgPC9zdHlsZT5cbiAgICAgICAgPC9kaXY+XG4gICAgPC8+XG4pOyJdfQ== */\n/*@ sourceURL=/Users/seungyonglee/Documents/GitHub/iamwhatiam/pages/product/productPresenter.js */"
+    css: ".product.jsx-2282839544{display:grid;margin:50px 0px;padding:0px 50px;grid-template-columnms:repeat(2,1fr);grid-gap:50px;}.product.jsx-2282839544 img.jsx-2282839544{max-width:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zZXVuZ3lvbmdsZWUvRG9jdW1lbnRzL0dpdEh1Yi9pYW13aGF0aWFtL3BhZ2VzL3Byb2R1Y3QvcHJvZHVjdFByZXNlbnRlci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFpQ3dCLEFBR2tDLEFBUWxCLGFBUHFCLEVBT3BCLGNBTnFCLGlCQUNxQixxQ0FDeEIsY0FDbEIiLCJmaWxlIjoiL1VzZXJzL3NldW5neW9uZ2xlZS9Eb2N1bWVudHMvR2l0SHViL2lhbXdoYXRpYW0vcGFnZXMvcHJvZHVjdC9wcm9kdWN0UHJlc2VudGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEhlYWQgZnJvbSBcIm5leHQvaGVhZFwiO1xuaW1wb3J0IHsgQnV0dG9uIGFzIEFudEJ1dHRvbiB9IGZyb20gXCJhbnRkXCI7XG5pbXBvcnQgSGVhZGVyIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL0hlYWRlclwiO1xuaW1wb3J0IEJ1dHRvbiBmcm9tIFwiLi4vLi4vY29tcG9uZW50cy9CdXR0b25cIjtcbmltcG9ydCBDYXJ0QnV0dG9uIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL0NhcnRCdXR0b25cIjtcblxuZXhwb3J0IGRlZmF1bHQgKHsgZGF0YSwgdG9nZ2xlQ2FydCB9KSA9PiAoXG4gICAgPD5cbiAgICAgICAgPEhlYWQ+XG4gICAgICAgICAgICA8dGl0bGU+e2RhdGEucHJvZHVjdC5uYW1lfSB8IE5vbWFkIFN0b3JlPC90aXRsZT5cbiAgICAgICAgPC9IZWFkPlxuICAgICAgICA8SGVhZGVyIFxuICAgICAgICAgICAgY2VudGVyQ29sdW1uPXtcbiAgICAgICAgICAgICAgICA8aDQ+UHJvZHVjdDwvaDQ+XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICByaWdodENvbHVtbj17XG4gICAgICAgICAgICAgICAgPENhcnRCdXR0b24gLz5cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGxlZnRDb2x1bW49e1xuICAgICAgICAgICAgICAgIDxCdXR0b24gaHJlZj1cIi9cIiB0ZXh0PVwiSG9tZVwiIC8+XG4gICAgICAgICAgICB9XG4gICAgICAgIC8+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPXtcInByb2R1Y3RcIn0+XG4gICAgICAgICAgICA8aW1nIHNyYz17ZGF0YS5wcm9kdWN0LnBob3RvLnVybH0gLz5cbiAgICAgICAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgICAgICAgICA8aDI+e2RhdGEucHJvZHVjdC5uYW1lfTwvaDI+XG4gICAgICAgICAgICAgICAgICAgIDxoMz57ZGF0YS5wcm9kdWN0LmRldGFpbH08L2gzPlxuICAgICAgICAgICAgICAgICAgICA8aDQ+e2RhdGEucHJvZHVjdC5kZXNjcmlwdGlvbn08L2g0PlxuICAgICAgICAgICAgICAgICAgICA8QW50QnV0dG9uIHR5cGU9XCJwcmltYXJ5XCIgb25DbGljaz17dG9nZ2xlQ2FydH0+XG4gICAgICAgICAgICAgICAgICAgICAgICB7ZGF0YS5wcm9kdWN0Lm9uQ2FydCA/IFwiUmVtb3ZlIGZyb20gY2FydFwiIDogXG4gICAgICAgICAgICAgICAgICAgICAgICBgQWRkIHRvIGNhcnQoJCR7ZGF0YS5wcm9kdWN0LnByaWNlfSlgfVxuICAgICAgICAgICAgICAgICAgICA8L0FudEJ1dHRvbj5cbiAgICAgICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICAgIDxzdHlsZSBqc3g+e2BcbiAgICAgICAgICAgICAgICAucHJvZHVjdCB7XG4gICAgICAgICAgICAgICAgICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgICAgICAgICAgICAgICAgIG1hcmdpbjogNTBweCAwcHg7XG4gICAgICAgICAgICAgICAgICAgIHBhZGRpbmc6IDBweCA1MHB4O1xuICAgICAgICAgICAgICAgICAgICBncmlkLXRlbXBsYXRlLWNvbHVtbm1zOiByZXBlYXQoMiwgMWZyKTtcbiAgICAgICAgICAgICAgICAgICAgZ3JpZC1nYXA6IDUwcHg7XG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIC5wcm9kdWN0IGltZyB7XG4gICAgICAgICAgICAgICAgICAgIG1heC13aWR0aDogMTAwJVxuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGB9XG4gICAgICAgICAgICA8L3N0eWxlPlxuICAgICAgICA8L2Rpdj5cbiAgICA8Lz5cbik7Il19 */\n/*@ sourceURL=/Users/seungyonglee/Documents/GitHub/iamwhatiam/pages/product/productPresenter.js */"
   })));
 });
 
@@ -484,7 +484,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\nquery productQuery($id: ID!){\n    product(where: {id: $id}) {\n        ...ProductItems\n        description\n    }\n}\n", "\n"]);
+  var data = _taggedTemplateLiteral(["\nquery productQuery($id: ID!){\n    product(where: {id: $id}) {\n        ...ProductItems\n        description\n        onCart @client\n    }\n}\n", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -502,7 +502,7 @@ var TOGGLE_CART = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_temp
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!**************************************!*\
   !*** multi ./pages/product/index.js ***!
   \**************************************/

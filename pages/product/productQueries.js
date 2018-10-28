@@ -6,6 +6,7 @@ query productQuery($id: ID!){
     product(where: {id: $id}) {
         ...ProductItems
         description
+        onCart @client
     }
 }
 ${PRODUCT_FRAGMENT}
