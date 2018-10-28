@@ -109,6 +109,35 @@ var API_URL = "https://api-euwest.graphcms.com/v1/cjmrqz1hg3g4001b9913bj7lk/mast
 
 /***/ }),
 
+/***/ "./fragments.js":
+/*!**********************!*\
+  !*** ./fragments.js ***!
+  \**********************/
+/*! exports provided: PRODUCT_FRAGMENT */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PRODUCT_FRAGMENT", function() { return PRODUCT_FRAGMENT; });
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n fragment ProductItems on Product{\n    id\n    name\n    detail\n    price\n    photo {\n        url\n    }\n }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+var PRODUCT_FRAGMENT = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject());
+
+/***/ }),
+
 /***/ "./lib/withApollo.js":
 /*!***************************!*\
   !*** ./lib/withApollo.js ***!
@@ -123,12 +152,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config */ "./config.js");
+/* harmony import */ var _resolvers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../resolvers */ "./resolvers.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (next_with_apollo__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   return new apollo_boost__WEBPACK_IMPORTED_MODULE_1___default.a({
-    uri: _config__WEBPACK_IMPORTED_MODULE_2__["API_URL"]
+    uri: _config__WEBPACK_IMPORTED_MODULE_2__["API_URL"],
+    clientState: {
+      resolvers: _resolvers__WEBPACK_IMPORTED_MODULE_3__["resolvers"],
+      defaults: _resolvers__WEBPACK_IMPORTED_MODULE_3__["defaults"]
+    }
   });
 }));
 
@@ -255,6 +290,102 @@ function (_App) {
 }(next_app__WEBPACK_IMPORTED_MODULE_2___default.a);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_lib_withApollo__WEBPACK_IMPORTED_MODULE_4__["default"])(MyApp));
+
+/***/ }),
+
+/***/ "./resolvers.js":
+/*!**********************!*\
+  !*** ./resolvers.js ***!
+  \**********************/
+/*! exports provided: defaults, resolvers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaults", function() { return defaults; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resolvers", function() { return resolvers; });
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _fragments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./fragments */ "./fragments.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n            {\n                cart @client {\n                    id\n                }\n            }\n            "]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n                ", " \n            "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+var defaults = {
+  cart: []
+};
+var resolvers = {
+  Mutation: {
+    toggleProduct: function toggleProduct(_, variables, _ref) {
+      var cache = _ref.cache,
+          getCacheKey = _ref.getCacheKey;
+      var id = getCacheKey({
+        __typename: "Product",
+        id: variables.id
+      });
+      var fragment = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject(), _fragments__WEBPACK_IMPORTED_MODULE_1__["PRODUCT_FRAGMENT"]);
+      var product = cache.readFragment({
+        fragment: fragment,
+        id: id
+      });
+      var cartQuery = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject2());
+
+      var _cache$readQuery = cache.readQuery({
+        query: cartQuery
+      }),
+          cart = _cache$readQuery.cart;
+
+      var newCart;
+      var foundProduct = cart.find(function (aProduct) {
+        return aProduct.id === product.id;
+      });
+
+      if (foundProduct) {
+        var cleanCart = cart.filter(function (aProduct) {
+          return aProduct.id !== product.id;
+        });
+        newCart = cleanCart;
+      } else {
+        newCart = _toConsumableArray(cart).concat([product]);
+      }
+
+      cache.writeData({
+        data: {
+          cart: newCart
+        }
+      });
+      return null;
+    }
+  }
+};
 
 /***/ }),
 

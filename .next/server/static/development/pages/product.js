@@ -137,6 +137,54 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./components/CartButton.js":
+/*!**********************************!*\
+  !*** ./components/CartButton.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Button */ "./components/Button.js");
+
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n    {\n        cart @client {\n            id\n        }\n    }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+
+var CART_QUERY = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_2__["gql"])(_templateObject());
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
+    query: CART_QUERY
+  }, function (_ref) {
+    var data = _ref.data;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      href: "/cart",
+      text: data.cart.length === 0 ? "Cart" : "Cart (".concat(data.cart.length, ")")
+    });
+  });
+});
+
+/***/ }),
+
 /***/ "./components/Header.js":
 /*!******************************!*\
   !*** ./components/Header.js ***!
@@ -300,8 +348,16 @@ function (_React$Component) {
         }
       }, function (_ref) {
         var data = _ref.data;
-        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_productPresenter__WEBPACK_IMPORTED_MODULE_4__["default"], {
-          data: data
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Mutation"], {
+          mutation: _productQueries__WEBPACK_IMPORTED_MODULE_5__["TOGGLE_CART"],
+          variables: {
+            id: id
+          }
+        }, function (toggleCart) {
+          return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_productPresenter__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            data: data,
+            toggleCart: toggleCart
+          });
         });
       });
     }
@@ -361,6 +417,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Header */ "./components/Header.js");
 /* harmony import */ var _components_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Button */ "./components/Button.js");
+/* harmony import */ var _components_CartButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/CartButton */ "./components/CartButton.js");
+
 
 
 
@@ -368,13 +426,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
-  var data = _ref.data;
+  var data = _ref.data,
+      toggleCart = _ref.toggleCart;
   return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("title", null, data.product.name, " | Nomad Store")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
     centerColumn: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", null, "Product"),
-    rightColumn: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      href: "/cart",
-      text: "Cart"
-    }),
+    rightColumn: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_CartButton__WEBPACK_IMPORTED_MODULE_6__["default"], null),
     leftColumn: react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
       href: "/",
       text: "Home"
@@ -393,10 +449,11 @@ __webpack_require__.r(__webpack_exports__);
   }, data.product.detail), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
     className: "jsx-2282839544"
   }, data.product.description), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(antd__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-    type: "primary"
+    type: "primary",
+    onClick: toggleCart
   }, "Add to cart($", data.product.price, ")")), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
     styleId: "2282839544",
-    css: ".product.jsx-2282839544{display:grid;margin:50px 0px;padding:0px 50px;grid-template-columnms:repeat(2,1fr);grid-gap:50px;}.product.jsx-2282839544 img.jsx-2282839544{max-width:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zZXVuZ3lvbmdsZWUvRG9jdW1lbnRzL0dpdEh1Yi9pYW13aGF0aWFtL3BhZ2VzL3Byb2R1Y3QvcHJvZHVjdFByZXNlbnRlci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUEwQndCLEFBR2tDLEFBUWxCLGFBUHFCLEVBT3BCLGNBTnFCLGlCQUNxQixxQ0FDeEIsY0FDbEIiLCJmaWxlIjoiL1VzZXJzL3NldW5neW9uZ2xlZS9Eb2N1bWVudHMvR2l0SHViL2lhbXdoYXRpYW0vcGFnZXMvcHJvZHVjdC9wcm9kdWN0UHJlc2VudGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEhlYWQgZnJvbSBcIm5leHQvaGVhZFwiO1xuaW1wb3J0IHsgQnV0dG9uIGFzIEFudEJ1dHRvbiB9IGZyb20gXCJhbnRkXCI7XG5pbXBvcnQgSGVhZGVyIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL0hlYWRlclwiO1xuaW1wb3J0IEJ1dHRvbiBmcm9tIFwiLi4vLi4vY29tcG9uZW50cy9CdXR0b25cIjtcblxuZXhwb3J0IGRlZmF1bHQgKHsgZGF0YSB9KSA9PiAoXG4gICAgPD5cbiAgICAgICAgPEhlYWQ+XG4gICAgICAgICAgICA8dGl0bGU+e2RhdGEucHJvZHVjdC5uYW1lfSB8IE5vbWFkIFN0b3JlPC90aXRsZT5cbiAgICAgICAgPC9IZWFkPlxuICAgICAgICA8SGVhZGVyIFxuICAgICAgICAgICAgY2VudGVyQ29sdW1uPXs8aDQ+UHJvZHVjdDwvaDQ+fVxuICAgICAgICAgICAgcmlnaHRDb2x1bW49ezxCdXR0b24gaHJlZj1cIi9jYXJ0XCIgdGV4dD1cIkNhcnRcIiAvPn1cbiAgICAgICAgICAgIGxlZnRDb2x1bW49ezxCdXR0b24gaHJlZj1cIi9cIiB0ZXh0PVwiSG9tZVwiIC8+fVxuICAgICAgICAvPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17XCJwcm9kdWN0XCJ9PlxuICAgICAgICAgICAgPGltZyBzcmM9e2RhdGEucHJvZHVjdC5waG90by51cmx9IC8+XG4gICAgICAgICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgICAgICAgICAgPGgyPntkYXRhLnByb2R1Y3QubmFtZX08L2gyPlxuICAgICAgICAgICAgICAgICAgICA8aDM+e2RhdGEucHJvZHVjdC5kZXRhaWx9PC9oMz5cbiAgICAgICAgICAgICAgICAgICAgPGg0PntkYXRhLnByb2R1Y3QuZGVzY3JpcHRpb259PC9oND5cbiAgICAgICAgICAgICAgICAgICAgPEFudEJ1dHRvbiB0eXBlPVwicHJpbWFyeVwiPlxuICAgICAgICAgICAgICAgICAgICAgICAgQWRkIHRvIGNhcnQoJFxuICAgICAgICAgICAgICAgICAgICAgICAge2RhdGEucHJvZHVjdC5wcmljZX0pXG4gICAgICAgICAgICAgICAgICAgIDwvQW50QnV0dG9uPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPHN0eWxlIGpzeD57YFxuICAgICAgICAgICAgICAgIC5wcm9kdWN0IHtcbiAgICAgICAgICAgICAgICAgICAgZGlzcGxheTogZ3JpZDtcbiAgICAgICAgICAgICAgICAgICAgbWFyZ2luOiA1MHB4IDBweDtcbiAgICAgICAgICAgICAgICAgICAgcGFkZGluZzogMHB4IDUwcHg7XG4gICAgICAgICAgICAgICAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1ubXM6IHJlcGVhdCgyLCAxZnIpO1xuICAgICAgICAgICAgICAgICAgICBncmlkLWdhcDogNTBweDtcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgLnByb2R1Y3QgaW1nIHtcbiAgICAgICAgICAgICAgICAgICAgbWF4LXdpZHRoOiAxMDAlXG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgYH1cbiAgICAgICAgICAgIDwvc3R5bGU+XG4gICAgICAgIDwvZGl2PlxuICAgIDwvPlxuKTsiXX0= */\n/*@ sourceURL=/Users/seungyonglee/Documents/GitHub/iamwhatiam/pages/product/productPresenter.js */"
+    css: ".product.jsx-2282839544{display:grid;margin:50px 0px;padding:0px 50px;grid-template-columnms:repeat(2,1fr);grid-gap:50px;}.product.jsx-2282839544 img.jsx-2282839544{max-width:100%;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zZXVuZ3lvbmdsZWUvRG9jdW1lbnRzL0dpdEh1Yi9pYW13aGF0aWFtL3BhZ2VzL3Byb2R1Y3QvcHJvZHVjdFByZXNlbnRlci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFpQ3dCLEFBR2tDLEFBUWxCLGFBUHFCLEVBT3BCLGNBTnFCLGlCQUNxQixxQ0FDeEIsY0FDbEIiLCJmaWxlIjoiL1VzZXJzL3NldW5neW9uZ2xlZS9Eb2N1bWVudHMvR2l0SHViL2lhbXdoYXRpYW0vcGFnZXMvcHJvZHVjdC9wcm9kdWN0UHJlc2VudGVyLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IEhlYWQgZnJvbSBcIm5leHQvaGVhZFwiO1xuaW1wb3J0IHsgQnV0dG9uIGFzIEFudEJ1dHRvbiB9IGZyb20gXCJhbnRkXCI7XG5pbXBvcnQgSGVhZGVyIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL0hlYWRlclwiO1xuaW1wb3J0IEJ1dHRvbiBmcm9tIFwiLi4vLi4vY29tcG9uZW50cy9CdXR0b25cIjtcbmltcG9ydCBDYXJ0QnV0dG9uIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL0NhcnRCdXR0b25cIjtcblxuZXhwb3J0IGRlZmF1bHQgKHsgZGF0YSwgdG9nZ2xlQ2FydCB9KSA9PiAoXG4gICAgPD5cbiAgICAgICAgPEhlYWQ+XG4gICAgICAgICAgICA8dGl0bGU+e2RhdGEucHJvZHVjdC5uYW1lfSB8IE5vbWFkIFN0b3JlPC90aXRsZT5cbiAgICAgICAgPC9IZWFkPlxuICAgICAgICA8SGVhZGVyIFxuICAgICAgICAgICAgY2VudGVyQ29sdW1uPXtcbiAgICAgICAgICAgICAgICA8aDQ+UHJvZHVjdDwvaDQ+XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICByaWdodENvbHVtbj17XG4gICAgICAgICAgICAgICAgPENhcnRCdXR0b24gLz5cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGxlZnRDb2x1bW49e1xuICAgICAgICAgICAgICAgIDxCdXR0b24gaHJlZj1cIi9cIiB0ZXh0PVwiSG9tZVwiIC8+XG4gICAgICAgICAgICB9XG4gICAgICAgIC8+XG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPXtcInByb2R1Y3RcIn0+XG4gICAgICAgICAgICA8aW1nIHNyYz17ZGF0YS5wcm9kdWN0LnBob3RvLnVybH0gLz5cbiAgICAgICAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgICAgICAgICA8aDI+e2RhdGEucHJvZHVjdC5uYW1lfTwvaDI+XG4gICAgICAgICAgICAgICAgICAgIDxoMz57ZGF0YS5wcm9kdWN0LmRldGFpbH08L2gzPlxuICAgICAgICAgICAgICAgICAgICA8aDQ+e2RhdGEucHJvZHVjdC5kZXNjcmlwdGlvbn08L2g0PlxuICAgICAgICAgICAgICAgICAgICA8QW50QnV0dG9uIHR5cGU9XCJwcmltYXJ5XCIgb25DbGljaz17dG9nZ2xlQ2FydH0+XG4gICAgICAgICAgICAgICAgICAgICAgICBBZGQgdG8gY2FydCgkXG4gICAgICAgICAgICAgICAgICAgICAgICB7ZGF0YS5wcm9kdWN0LnByaWNlfSlcbiAgICAgICAgICAgICAgICAgICAgPC9BbnRCdXR0b24+XG4gICAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8c3R5bGUganN4PntgXG4gICAgICAgICAgICAgICAgLnByb2R1Y3Qge1xuICAgICAgICAgICAgICAgICAgICBkaXNwbGF5OiBncmlkO1xuICAgICAgICAgICAgICAgICAgICBtYXJnaW46IDUwcHggMHB4O1xuICAgICAgICAgICAgICAgICAgICBwYWRkaW5nOiAwcHggNTBweDtcbiAgICAgICAgICAgICAgICAgICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5tczogcmVwZWF0KDIsIDFmcik7XG4gICAgICAgICAgICAgICAgICAgIGdyaWQtZ2FwOiA1MHB4O1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAucHJvZHVjdCBpbWcge1xuICAgICAgICAgICAgICAgICAgICBtYXgtd2lkdGg6IDEwMCVcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICBgfVxuICAgICAgICAgICAgPC9zdHlsZT5cbiAgICAgICAgPC9kaXY+XG4gICAgPC8+XG4pOyJdfQ== */\n/*@ sourceURL=/Users/seungyonglee/Documents/GitHub/iamwhatiam/pages/product/productPresenter.js */"
   })));
 });
 
@@ -406,15 +463,26 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************!*\
   !*** ./pages/product/productQueries.js ***!
   \*****************************************/
-/*! exports provided: PRODUCT_QUERY */
+/*! exports provided: PRODUCT_QUERY, TOGGLE_CART */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PRODUCT_QUERY", function() { return PRODUCT_QUERY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TOGGLE_CART", function() { return TOGGLE_CART; });
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
 /* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _fragments__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../fragments */ "./fragments.js");
+function _templateObject2() {
+  var data = _taggedTemplateLiteral(["\n    mutation toggleCart($id: ID!){\n        toggleProduct(id: $id) @client\n    }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\nquery productQuery($id: ID!){\n    product(where: {id: $id}) {\n        ...ProductItems\n        description\n    }\n}\n", "\n"]);
 
@@ -430,6 +498,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var PRODUCT_QUERY = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject(), _fragments__WEBPACK_IMPORTED_MODULE_1__["PRODUCT_FRAGMENT"]);
+var TOGGLE_CART = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject2());
 
 /***/ }),
 

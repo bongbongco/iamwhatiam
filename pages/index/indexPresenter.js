@@ -4,6 +4,7 @@ import { Row, Layout } from "antd";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import ProductCard from "../../components/ProductCard";
+import CartButton from "../../components/CartButton";
 const { Content } = Layout;
 
 export default ({ data }) => (
@@ -12,11 +13,15 @@ export default ({ data }) => (
             <title>Home | IamwhatIam Store</title>
         </Head>
         <Header
-            centerColumn={<h4>IamwhatIam Store</h4>}
-            rightColumn={
-                <Button href="/cart" text="Cart" btnIcon={"shopping-cart"} />
+            centerColumn={
+                <h4>IamwhatIam Store</h4>
             }
-            leftColumn={<Button href="/search" text="Search" btnIcon={"search"} />}
+            rightColumn={
+                <CartButton />
+            }
+            leftColumn={
+                <Button href="/search" text="Search" btnIcon={"search"} />
+            }
         />
         <Content style={{ padding: "0 50px" }}>
             <div
