@@ -252,12 +252,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Meta = antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta;
-/* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
-  var id = _ref.id,
-      name = _ref.name,
-      subtitle = _ref.subtitle,
-      price = _ref.price,
-      photoUrl = _ref.photoUrl;
+
+var Text = function Text(_ref) {
+  var text = _ref.text;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      color: "black"
+    }
+  }, text);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (function (_ref2) {
+  var id = _ref2.id,
+      name = _ref2.name,
+      subtitle = _ref2.subtitle,
+      price = _ref2.price,
+      photoUrl = _ref2.photoUrl;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       marginBottom: "25px"
@@ -276,8 +286,12 @@ var Meta = antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta;
       src: photoUrl
     })
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Meta, {
-    title: name,
-    description: subtitle
+    title: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Text, {
+      text: name
+    }),
+    description: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Text, {
+      text: subtitle
+    })
   })))));
 });
 
@@ -391,13 +405,12 @@ __webpack_require__.r(__webpack_exports__);
 var Content = antd__WEBPACK_IMPORTED_MODULE_3__["Layout"].Content;
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var data = _ref.data;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null, "Home | IamwhatIam Store")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    centerColumn: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "IamwhatIam Store"),
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null, "Home | IamwhatIam")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    centerColumn: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "IamwhatIam"),
     rightColumn: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CartButton__WEBPACK_IMPORTED_MODULE_7__["default"], null),
     leftColumn: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Button__WEBPACK_IMPORTED_MODULE_5__["default"], {
       href: "/search",
-      text: "Search",
-      btnIcon: "search"
+      text: "Search"
     })
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Content, {
     style: {

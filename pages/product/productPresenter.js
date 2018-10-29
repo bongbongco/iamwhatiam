@@ -7,7 +7,7 @@ import CartButton from "../../components/CartButton";
 export default ({ data, toggleCart }) => (
     <>
         <Head>
-            <title>{data.product.name} | Nomad Store</title>
+            <title>{data.product.name} | IamwhatIam</title>
         </Head>
         <Header 
             centerColumn={

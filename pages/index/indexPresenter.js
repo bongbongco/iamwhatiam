@@ -10,17 +10,17 @@ const { Content } = Layout;
 export default ({ data }) => (
     <>
         <Head>
-            <title>Home | IamwhatIam Store</title>
+            <title>Home | IamwhatIam</title>
         </Head>
         <Header
             centerColumn={
-                <h4>IamwhatIam Store</h4>
+                <h4>IamwhatIam</h4>
             }
             rightColumn={
                 <CartButton />
             }
             leftColumn={
-                <Button href="/search" text="Search" btnIcon={"search"} />
+                <Button href="/search" text="Search" />
             }
         />
         <Content style={{ padding: "0 50px" }}>

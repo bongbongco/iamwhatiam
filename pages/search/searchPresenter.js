@@ -11,7 +11,7 @@ const { Content } = Layout;
 export default ({ data, updateSearchTerm, searchTerm }) => (
     <>
         <Head>
-            <title>Search | IamwhatIam Store</title>
+            <title>Search | IamwhatIam</title>
         </Head>
         <Header
             centerColumn={
