@@ -138,6 +138,34 @@ var PRODUCT_FRAGMENT = Object(apollo_boost__WEBPACK_IMPORTED_MODULE_0__["gql"])(
 
 /***/ }),
 
+/***/ "./lib/base64.js":
+/*!***********************!*\
+  !*** ./lib/base64.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var BASE64_MARKER = ";base64,";
+
+var convertDataURIToBinary = function convertDataURIToBinary(base64String) {
+  var padding = "=".repeat((4 - base64String.length % 4) % 4);
+  var base64 = (base64String + padding).replace(/\-/g, "+").replace(/_/g, "/");
+  var rawData = window.atob(base64);
+  var outputArray = new Uint8Array(rawData.length);
+
+  for (var i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+
+  return outputArray;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (convertDataURIToBinary);
+
+/***/ }),
+
 /***/ "./lib/withApollo.js":
 /*!***************************!*\
   !*** ./lib/withApollo.js ***!
@@ -195,6 +223,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_nprogress_styles__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_nprogress_styles__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var next_nprogress__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next-nprogress */ "next-nprogress");
 /* harmony import */ var next_nprogress__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_nprogress__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _lib_base64__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../lib/base64 */ "./lib/base64.js");
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -227,6 +256,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Footer = antd__WEBPACK_IMPORTED_MODULE_1__["Layout"].Footer;
 var msDelay = 300;
 
@@ -244,9 +274,25 @@ function (_App) {
   _createClass(MyApp, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("/sw.js").then(function (result) {
-          return console.log("SW Registered: ", result);
+      if ("serviceWorker" in navigator && "PushManager" in window) {
+        navigator.serviceWorker.register("/sw.js").then(function (swReg) {
+          console.log("SW Registered: ", swReg);
+          swReg.pushManager.getSubscription().then(function (subscription) {
+            if (subscription === null) {
+              Notification.requestPermission().then(function (permission) {
+                if (permission === "granted") {
+                  swReg.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: Object(_lib_base64__WEBPACK_IMPORTED_MODULE_9__["default"])("BHWawc3L7sMETVbpfwF3eNfLWSKlhm5t-plnRu6UMuT1_4BFgW8u8LKNmME_HTvOXjGeFo-0DAP8Pt_DDC1dCYE")
+                  }).then(function (PushSubscriptionObject) {
+                    console.log(JSON.stringify(PushSubscriptionObject));
+                  });
+                }
+              });
+            } else {
+              console.log(JSON.stringify(subscription));
+            }
+          });
         }).catch(function (error) {
           return console.log("Can't register SW: ", error);
         });
@@ -313,7 +359,7 @@ function (_App) {
   return MyApp;
 }(next_app__WEBPACK_IMPORTED_MODULE_2___default.a);
 
-/* harmony default export */ __webpack_exports__["default"] = (next_nprogress__WEBPACK_IMPORTED_MODULE_8___default()()(Object(_lib_withApollo__WEBPACK_IMPORTED_MODULE_5__["default"])(MyApp))); //export default withApollo(MyApp);
+/* harmony default export */ __webpack_exports__["default"] = (next_nprogress__WEBPACK_IMPORTED_MODULE_8___default()()(Object(_lib_withApollo__WEBPACK_IMPORTED_MODULE_5__["default"])(MyApp)));
 
 /***/ }),
 

@@ -17,3 +17,12 @@ self.addEventListener("fetch", event => {
             })
     );
 });
+
+self.addEventListener("push", event => {
+    const title = "IamwhatIam";
+    const options = {
+            body: event.data.text(),
+            icon: "./192x192.png"
+        };
+    event.waitUntil(self.registration.showNotification(title, options));
+});

@@ -6,7 +6,7 @@ import ProductCard from "../../components/ProductCard";
 
 const reducerFn = (price, product) => price + product.price;
 
-export default ({ data }) => (
+export default ({ data, onPay }) => (
     <>
         <Head>
             <title>Cart | IamwhatIam</title>
@@ -42,7 +42,7 @@ export default ({ data }) => (
         </div>
         <div style={{ padding: "0px 50px" }}>
             <h3>Total price: {data && data.cart && data.cart.reduce(reducerFn, 0)}</h3>
-            <AntButton>Check out</AntButton>
+            <AntButton onClick={onPay}>Check out</AntButton>
         </div>
     </>
 );

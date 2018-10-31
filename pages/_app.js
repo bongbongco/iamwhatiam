@@ -3,9 +3,10 @@ import App, { Container } from "next/app";
 import React from "react";
 import ReactDOM from "react-dom";
 import withApollo from "../lib/withApollo";
-import { ApolloProvider } from "react-apollo";
+import Subscription, { ApolloProvider } from "react-apollo";
 import NProgressStyles from "next-nprogress/styles";
 import withNProgress from "next-nprogress";
+import convertDataURIToBinary from "../lib/base64";
 const { Footer } = Layout;
 const msDelay = 300;
 
@@ -21,10 +22,32 @@ class MyApp extends App {
     }
 
     componentDidMount() {
-        if ("serviceWorker" in navigator) {
+        if ("serviceWorker" in navigator && 
+        "PushManager" in window) 
+        {
             navigator.serviceWorker
                 .register("/sw.js")
-                .then(result => console.log("SW Registered: ", result))
+                .then(swReg => {
+                    console.log("SW Registered: ", swReg); 
+                    swReg.pushManager.getSubscription().then(subscription => {
+                        if (subscription === null) {
+                            Notification.requestPermission().then(permission => {
+                                if(permission === "granted") {
+                                    swReg.pushManager.subscribe({
+                                        userVisibleOnly: true,
+                                        applicationServerKey: convertDataURIToBinary(
+                                            "BHWawc3L7sMETVbpfwF3eNfLWSKlhm5t-plnRu6UMuT1_4BFgW8u8LKNmME_HTvOXjGeFo-0DAP8Pt_DDC1dCYE"
+                                        )
+                                    }).then(PushSubscriptionObject => {
+                                        console.log(JSON.stringify(PushSubscriptionObject));
+                                    })
+                                }
+                            });
+                        } else {
+                            console.log(JSON.stringify(subscription));
+                        }
+                    });
+                })
                 .catch(error => console.log("Can't register SW: ", error));
         }
     }
@@ -46,4 +69,3 @@ class MyApp extends App {
 }
 
 export default withNProgress()(withApollo(MyApp));
-//export default withApollo(MyApp);
